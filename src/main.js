@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import 'normalize.css'
 import '@/assets/styles/choices.scss'
+import '@/assets/styles/range.scss'
 
 Vue.config.productionTip = false
 

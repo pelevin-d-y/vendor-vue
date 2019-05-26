@@ -1,5 +1,7 @@
 <template>
-  
+  <div class="div">
+    Danger
+  </div>
 </template>
 
 <script>

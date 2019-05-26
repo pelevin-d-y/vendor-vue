@@ -35,4 +35,18 @@ body {
 .is-hidden {
   display: none;
 }
+
+.arrow {
+  width: 9px;
+  height: 16px;
+  background: url('./assets/images/arrow.svg') no-repeat center/contain;
+}
+
+a {
+  text-decoration: none;
+}
+
+.disabled {
+  pointer-events: none;
+}
 </style>

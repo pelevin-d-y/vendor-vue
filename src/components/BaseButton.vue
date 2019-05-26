@@ -1,11 +1,14 @@
 <template>
-  <button :class="['btn', variant]">Next</button>
+  <button :class="['btn', variant]">{{ text }}</button>
 </template>
 
 <script>
 export default {
   props: {
-    text: String,
+    text: {
+      type: String,
+      default: 'Next'
+    },
     variant: {
       type: String,
       validator: (value) => {

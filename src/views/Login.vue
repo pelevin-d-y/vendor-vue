@@ -1,15 +1,15 @@
 <template>
   <div class="page">
-    <TheHeader controls="on"/>
-    <form class="login">
+    <TheHeader controls="off"/>
+    <form class="login" @submit="onSubmit">
       <div class="login__input-wrapper">
-        <input type="email" placeholder="Email" required="required">
+        <input type="email" name="email" placeholder="Email" v-model="email" required="required">
       </div>
       <div class="login__input-wrapper">
-        <input type="password" placeholder="Password" required="required">
+        <input type="password" name="password" placeholder="Password" v-model="password" required="required">
       </div>
       <div class="login__input-wrapper login__input-select-wrapper">
-        <select class="login-select" required="required" ref="select">
+        <select class="login-select" name="location" required="required" ref="select" v-model="location">
           <option value="" placeholder="placeholder">Location</option>
           <option value="location1">location1</option>
           <option value="location2">location2</option>
@@ -35,7 +35,9 @@ export default {
 
   data() {
     return {
-      selected: ''
+      location: '',
+      password: '',
+      email: ''
     }
   },
 
@@ -43,6 +45,24 @@ export default {
     new Choices(this.$refs.select, {
       searchEnabled: false
     });
+
+    this.$refs.select.addEventListener('change', (event) => {
+      console.log('selected')
+    })
+  },
+
+  methods: {
+    onSubmit(event) {
+      event.preventDefault()
+      console.log('submit!', this.location, this.password, this.email)
+      this.$store.commit('setUserLocation', this.location) // example VUEX mutation
+
+      this.$store.dispatch('getUsers').then(() => {
+          console.log('this.$store.state', this.$store.state)
+          this.$router.push('step2')
+        }
+      ) // example VUEX action
+    }
   }
 }
 </script>
