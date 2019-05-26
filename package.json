@@ -4,13 +4,15 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "choices.js": "^7.0.0",
     "core-js": "^2.6.5",
     "normalize.css": "^8.0.1",
+    "push-dir": "^0.4.1",
     "rangeslider-pure": "^0.4.9",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",

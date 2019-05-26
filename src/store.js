@@ -16,7 +16,6 @@ export default new Vuex.Store({
 
     setUserTotal(state, payload) {
       state.total = payload
-      console.log('state.total', state.total)
     }
   },
   actions: {

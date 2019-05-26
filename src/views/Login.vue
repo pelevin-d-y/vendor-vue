@@ -45,10 +45,6 @@ export default {
     new Choices(this.$refs.select, {
       searchEnabled: false
     });
-
-    this.$refs.select.addEventListener('change', (event) => {
-      console.log('selected')
-    })
   },
 
   methods: {
@@ -58,9 +54,9 @@ export default {
       this.$store.commit('setUserLocation', this.location) // example VUEX mutation
 
       this.$store.dispatch('getUsers').then(() => {
-          console.log('this.$store.state', this.$store.state)
-          this.$router.push('step2')
-        }
+        console.log('this.$store.state', this.$store.state)
+        this.$router.push('step2')
+      }
       ) // example VUEX action
     }
   }
