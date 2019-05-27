@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: 'vendor-vue', // for deploy on gh-pages
+  // publicPath: 'vendor-vue', // for deploy on gh-pages
 }

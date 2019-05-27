@@ -11,10 +11,7 @@
       <div class="login__input-wrapper login__input-select-wrapper">
         <select class="login-select" name="location" required="required" ref="select" v-model="location">
           <option value="" placeholder="placeholder">Location</option>
-          <option value="location1">location1</option>
-          <option value="location2">location2</option>
-          <option value="location3">location3</option>
-          <option value="location4">location4</option>
+          <option v-for="option in selectOptions" :value="option.last_name" :key="option.id">{{ option.last_name }}</option>
         </select>
       </div>
       <BaseButton variant="base"/>
@@ -37,27 +34,33 @@ export default {
     return {
       location: '',
       password: '',
-      email: ''
+      email: '',
+      selectOptions: [],
+      isSelect: false
     }
   },
 
-  mounted() {
-    new Choices(this.$refs.select, {
-      searchEnabled: false
-    });
+  async mounted() {
+    const data = await this.$store.dispatch('getLoginSelect')
+    this.selectOptions = data
+    this.isSelect = true
+    this.$nextTick(() => {
+      new Choices(this.$refs.select, {
+        searchEnabled: false
+      });
+    })
+    
   },
 
   methods: {
-    onSubmit(event) {
+    async onSubmit(event) {
       event.preventDefault()
       console.log('submit!', this.location, this.password, this.email)
       this.$store.commit('setUserLocation', this.location) // example VUEX mutation
 
-      this.$store.dispatch('getUsers').then(() => {
-        console.log('this.$store.state', this.$store.state)
-        this.$router.push('step2')
-      }
-      ) // example VUEX action
+      await this.$store.dispatch('getUsers') // example VUEX action
+      console.log('this.$store.state', this.$store.state)
+      this.$router.push('step2')
     }
   }
 }

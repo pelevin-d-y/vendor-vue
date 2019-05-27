@@ -14,7 +14,7 @@ export default {
 .back {
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: 10px;
 
   display: flex;
   flex-flow: row nowrap;
